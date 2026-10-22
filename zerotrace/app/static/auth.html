@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · ZeroTrace</title><link rel="stylesheet" href="/static/auth.css">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="brand-side">
+      <a class="brand" href="/login"><span class="brand-mark"></span>ZeroTrace</a>
+      <div class="pitch"><p class="eyebrow">PRIVACY-FIRST ANALYTICS</p><h1>Understand your website.<br><em>Not your visitors.</em></h1><p>Aggregate insights for your team, without persistent visitor profiles or individual click histories.</p>
+      <div class="proof"><span>✓</span> No visitor IDs or analytics cookies</div><div class="proof"><span>✓</span> Registered origins and owner accounts</div><div class="proof"><span>✓</span> Persistent daily aggregates, not event logs</div></div>
+      <p class="legal-note">Prototype note: small counts are displayed. They can create inference risks in sensitive contexts. Differential privacy is not implemented.</p>
+    </section>
+    <section class="auth-main">
+      <div class="auth-card">
+        <p class="eyebrow" id="modeEyebrow">YOUR WORKSPACE</p><h2 id="title">Welcome back</h2><p class="muted" id="intro">Sign in to manage registered websites and view aggregate analytics.</p>
+        <div class="tabs" role="tablist"><button id="loginTab" class="active" type="button">Sign in</button><button id="registerTab" type="button">Create account</button></div>
+        <form id="authForm">
+          <label for="email">Email</label><input type="email" id="email" name="email" autocomplete="username" required maxlength="254" placeholder="you@example.com">
+          <label for="password">Password</label><input type="password" id="password" name="password" autocomplete="current-password" required minlength="10" maxlength="256" placeholder="At least 10 characters">
+          <p class="muted small" id="passwordHelp">Use your account password.</p>
+          <button class="submit" type="submit" id="submitBtn">Sign in</button><p class="error" id="error" role="alert"></p><p class="success" id="success" role="status"></p>
+        </form>
+        <p class="fineprint">Sessions use an HttpOnly cookie. Use HTTPS and set <code>ZT_COOKIE_SECURE=true</code> when deployed.</p>
+      </div>
+    </section>
+  </main>
+  <script src="/static/auth.js" defer></script>
+</body>
+</html>
