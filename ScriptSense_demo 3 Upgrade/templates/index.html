@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScriptSense — Prescription Safety Intelligence</title>
+  <meta name="description" content="ScriptSense turns handwritten prescriptions into safer, reviewable medication information.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/font/lucide.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><i class="icon icon-file-scan"></i></div>
+        <div><strong>ScriptSense</strong><span>Medication Safety</span></div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-icon"><i class="icon icon-clipboard-plus"></i></div>
+        <div><span>ACTIVE CASE</span><strong>RX-2026-0148</strong><small>Ready for review</small></div>
+        <button class="ghost-icon" aria-label="Case options"><i class="icon icon-more-horizontal"></i></button>
+      </div>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <p class="nav-label">WORKSPACE</p>
+        <a class="nav-item active" href="#dashboard"><i class="icon icon-layout-dashboard"></i><span>Overview</span><b>⌘1</b></a>
+        <a class="nav-item" href="#prescription"><i class="icon icon-scan-line"></i><span>Prescription</span><b>⌘2</b></a>
+        <a class="nav-item" href="#medications"><i class="icon icon-capsule"></i><span>Medications</span><b>⌘3</b></a>
+        <a class="nav-item" href="#safety"><i class="icon icon-shield-check"></i><span>Safety checks</span><em>2</em></a>
+        <a class="nav-item" href="#schedule"><i class="icon icon-calendar-clock"></i><span>Dosage schedule</span></a>
+        <p class="nav-label lower">TOOLS</p>
+        <a class="nav-item" href="#insights"><i class="icon icon-sparkles"></i><span>AI review</span><em class="ai-dot">AI</em></a>
+        <a class="nav-item" href="#how"><i class="icon icon-circle-help"></i><span>How it works</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="privacy"><i class="icon icon-lock-keyhole"></i><div><strong>Privacy first</strong><span>Local prototype · processed locally</span></div></div>
+        <div class="version"><span>BUILD</span> SCRIPTSENSE v0.2</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><div class="brand-mark"><i class="icon icon-file-scan"></i></div><strong>ScriptSense</strong></div>
+        <div class="crumbs"><span>Workspace</span><i class="icon icon-chevron-right"></i><strong>Prescription review</strong><span class="crumb-case">RX-2026-0148</span></div>
+        <div class="top-actions">
+          <div class="system-status"><span class="dot"></span><span>All systems ready</span></div>
+          <button class="icon-btn" id="helpBtn" aria-label="Help"><i class="icon icon-circle-help"></i></button>
+          <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><i class="icon icon-moon"></i></button>
+          <div class="avatar" title="Pharmacist workspace">PS</div>
+        </div>
+      </header>
+
+      <section class="content" id="dashboard">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><i class="icon icon-sparkles"></i> AI-assisted medication safety <span>•</span> Review workspace</div>
+            <h1>Turn hard-to-read scripts<br><span>into safer reviews.</span></h1>
+            <p>ScriptSense reads photographed handwriting, maps medications to a standard vocabulary, checks safety risks, and prepares an explainable review for a pharmacist.</p>
+            <div class="hero-actions">
+              <button class="primary-btn" id="heroUpload"><i class="icon icon-scan-line"></i> Start prescription review</button>
+              <button class="secondary-btn" id="seeWorkflow"><i class="icon icon-route"></i> See workflow</button>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-top"><span class="live-tag"><span class="dot"></span> REVIEW READY</span><span>Case 0148</span></div>
+            <div class="ring"><div><strong>94.8%</strong><span>recognition confidence</span></div></div>
+            <div class="hero-panel-foot"><span><i class="icon icon-user-check"></i> Human verification</span><strong>Required</strong></div>
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><div class="metric-icon blue"><i class="icon icon-file-check-2"></i></div><div><span>Prescription status</span><strong>Ready for review</strong><small>Image successfully captured</small></div><i class="icon icon-arrow-up-right metric-arrow"></i></div>
+          <div class="metric"><div class="metric-icon green"><i class="icon icon-pill"></i></div><div><span>Medications detected</span><strong>04 <small>items</small></strong><small>3 high-confidence · 1 review</small></div><i class="icon icon-arrow-up-right metric-arrow"></i></div>
+          <div class="metric"><div class="metric-icon amber"><i class="icon icon-triangle-alert"></i></div><div><span>Safety findings</span><strong>02 <small>review</small></strong><small>1 high · 1 therapy check</small></div><i class="icon icon-arrow-up-right metric-arrow"></i></div>
+          <div class="metric"><div class="metric-icon violet"><i class="icon icon-badge-check"></i></div><div><span>Recognition confidence</span><strong>94.8%</strong><small>Context-assisted handwriting read</small></div><i class="icon icon-arrow-up-right metric-arrow"></i></div>
+        </div>
+
+        <div class="progress-strip" id="how">
+          <div class="progress-title"><span class="section-kicker">REVIEW PIPELINE</span><strong>Prescription safety workflow</strong></div>
+          <div class="pipeline">
+            <div class="pipe done"><span>01</span><div><strong>Read</strong><small>Handwriting OCR</small></div></div><i class="icon icon-arrow-right"></i>
+            <div class="pipe done"><span>02</span><div><strong>Verify</strong><small>Drug mapping</small></div></div><i class="icon icon-arrow-right"></i>
+            <div class="pipe active"><span>03</span><div><strong>Check</strong><small>Safety rules</small></div></div><i class="icon icon-arrow-right"></i>
+            <div class="pipe"><span>04</span><div><strong>Explain</strong><small>Plain language</small></div></div>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <section class="card prescription-card" id="prescription">
+            <div class="card-head">
+              <div><span class="section-kicker">STEP 01 · INPUT</span><h2>Prescription capture</h2><p class="subhead">Add a clear photograph of the handwritten prescription.</p></div>
+              <span class="status success"><i class="icon icon-check"></i> Image received</span>
+            </div>
+            <div class="capture-area" id="dropZone" tabindex="0" aria-label="Prescription upload area">
+              <div class="scan-grid"></div><div class="scan-glow"></div>
+              <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+              <div class="rx-paper">
+                <div class="rx-top"><span>Dr. A. Raman</span><span>Rx</span></div>
+                <div class="paper-meta">Patient · Demo record</div>
+                <div class="scribble one">Tab. Amox... 500 mg</div>
+                <div class="scribble two">1 tab · three times daily</div>
+                <div class="scribble three">Tab. Warfarin 5 mg</div>
+                <div class="scribble four">once daily · evening</div>
+                <div class="rx-line"></div>
+                <div class="rx-sign">A. Raman</div>
+              </div>
+              <div class="capture-overlay"><div class="scan-chip" id="scanChip"><i class="icon icon-scan"></i> Handwriting image</div><span>Demo preview</span></div>
+            </div>
+            <div class="upload-row"><button class="primary-btn" id="uploadBtn"><i class="icon icon-upload"></i> Upload prescription</button><button class="secondary-btn" id="demoBtn"><i class="icon icon-play"></i> Load demo</button><input id="fileInput" type="file" accept="image/*" hidden></div>
+            <div class="capture-meta"><span><i class="icon icon-image"></i> JPG · PNG · HEIC</span><span><i class="icon icon-maximize-2"></i> Best with good lighting</span><span><i class="icon icon-lock"></i> Local prototype</span></div>
+          </section>
+
+          <section class="card review-card" id="medications">
+            <div class="card-head">
+              <div><span class="section-kicker">STEP 02 · VERIFY</span><h2>Medication recognition</h2><p class="subhead">Every detected item keeps its confidence visible.</p></div>
+              <span class="confidence"><i class="icon icon-scan-text"></i> Vision handwriting read</span>
+            </div>
+            <div class="confidence-banner"><div><span>Overall recognition</span><strong>94.8%</strong></div><div class="bar"><span style="width:94.8%"></span></div><small>1 item needs a closer look</small></div>
+            <div class="med-list">
+              <button class="med-row" data-med="Amoxicillin"><div class="drug-icon blue"><i class="icon icon-capsule"></i></div><div class="med-info"><strong>Amoxicillin</strong><span>500 mg · tablet · 3× daily</span></div><span class="conf high">98%</span><span class="verify-state"><i class="icon icon-check"></i></span><i class="icon icon-chevron-right row-chevron"></i></button>
+              <button class="med-row" data-med="Warfarin"><div class="drug-icon violet"><i class="icon icon-capsule"></i></div><div class="med-info"><strong>Warfarin</strong><span>5 mg · tablet · 1× evening</span></div><span class="conf high">96%</span><span class="verify-state"><i class="icon icon-check"></i></span><i class="icon icon-chevron-right row-chevron"></i></button>
+              <button class="med-row needs-review" data-med="Omeprazole"><div class="drug-icon cyan"><i class="icon icon-capsule"></i></div><div class="med-info"><strong>Omeprazole</strong><span>20 mg · capsule · 1× morning</span></div><span class="conf med">89%</span><span class="verify-state"><i class="icon icon-alert-circle"></i></span><i class="icon icon-chevron-right row-chevron"></i></button>
+              <button class="med-row" data-med="Paracetamol"><div class="drug-icon green"><i class="icon icon-capsule"></i></div><div class="med-info"><strong>Paracetamol</strong><span>500 mg · tablet · as needed</span></div><span class="conf high">97%</span><span class="verify-state"><i class="icon icon-check"></i></span><i class="icon icon-chevron-right row-chevron"></i></button>
+            </div>
+            <div class="review-note"><i class="icon icon-user-check"></i><span><strong>Manual verification required.</strong> ScriptSense never silently guesses an uncertain drug name before dispensing.</span><button class="text-btn" id="verifyBtn">Review <i class="icon icon-arrow-up-right"></i></button></div>
+            <div class="transcript-panel"><div class="transcript-head"><span><i class="icon icon-align-left"></i> Raw prescription readback</span><span id="transcriptStatus">Vision extraction</span></div><pre id="ocrTranscript">Demo prescription loaded. Upload an image to inspect the model transcription.</pre></div>
+          </section>
+        </div>
+
+        <div class="lower-grid">
+          <section class="card safety-card" id="safety">
+            <div class="card-head"><div><span class="section-kicker">STEP 03 · CHECK</span><h2>Safety intelligence</h2><p class="subhead">Potential risks are prioritized for human review.</p></div><button class="text-btn" id="allFindings">2 findings <i class="icon icon-arrow-up-right"></i></button></div>
+            <div class="risk-summary"><div class="risk-score"><strong>1</strong><span>high-priority<br>finding</span></div><div class="risk-bars"><div><span>Interaction</span><b><i style="width:92%"></i></b><em>High</em></div><div><span>Therapy duplication</span><b><i style="width:48%"></i></b><em>Review</em></div></div></div>
+            <div class="alert critical"><div class="alert-icon"><i class="icon icon-zap"></i></div><div><div class="alert-title"><strong>Potential drug interaction</strong><span>HIGH</span></div><p><b>Warfarin + Amoxicillin</b> may increase bleeding risk. Confirm indication, dose, duration, and patient-specific factors.</p><small><i class="icon icon-circle-alert"></i> Pharmacist review recommended</small></div></div>
+            <div class="alert warning"><div class="alert-icon"><i class="icon icon-copy-check"></i></div><div><div class="alert-title"><strong>Duplicate / therapy review</strong><span>REVIEW</span></div><p>Cross-check against the patient's existing medication history before dispensing.</p><small><i class="icon icon-search-check"></i> Requires medication-history check</small></div></div>
+          </section>
+
+          <section class="card schedule-card" id="schedule">
+            <div class="card-head"><div><span class="section-kicker">STEP 04 · PLAN</span><h2>Dosage schedule</h2><p class="subhead">A readable schedule generated from the detected directions.</p></div><span class="status info"><i class="icon icon-clock-3"></i> Draft</span></div>
+            <div class="schedule-summary"><div><strong>4</strong><span>daily entries</span></div><div><strong>3</strong><span>scheduled medicines</span></div><div><strong>1</strong><span>as-needed</span></div></div>
+            <div class="timeline">
+              <div class="time"><div class="time-dot"></div><span>08:00 AM</span><div><strong>Omeprazole</strong><small>20 mg · before breakfast</small></div><em>Morning</em></div>
+              <div class="time"><div class="time-dot"></div><span>01:00 PM</span><div><strong>Amoxicillin</strong><small>500 mg · scheduled dose</small></div><em>Midday</em></div>
+              <div class="time"><div class="time-dot"></div><span>06:00 PM</span><div><strong>Warfarin</strong><small>5 mg · evening dose</small></div><em>Evening</em></div>
+              <div class="time"><div class="time-dot"></div><span>09:00 PM</span><div><strong>Amoxicillin</strong><small>500 mg · scheduled dose</small></div><em>Night</em></div>
+            </div>
+            <div class="schedule-note"><i class="icon icon-info"></i> Schedule is a draft and must be confirmed against the original prescription.</div>
+          </section>
+        </div>
+
+        <section class="card ai-card" id="insights">
+          <div class="ai-orb"><i class="icon icon-sparkles"></i></div>
+          <div class="ai-copy"><span class="section-kicker">AI REVIEW · EXPLAINABILITY</span><h2>Clear explanations, never silent guesses.</h2><p>ScriptSense can turn verified evidence into a concise pharmacist-facing review: what was recognized, what is uncertain, which safety checks triggered, and what needs confirmation.</p><div class="ai-tags"><span><i class="icon icon-message-square-text"></i> Plain language</span><span><i class="icon icon-file-check-2"></i> Evidence-linked</span><span><i class="icon icon-user-check"></i> Human in the loop</span></div></div>
+          <div class="ai-output"><div class="ai-output-head"><span><span class="dot"></span> Draft analysis</span><span>Not clinical advice</span></div><p>“Two safety items need review. The highest-priority finding is a potential interaction involving warfarin. One medication has lower recognition confidence and should be verified against the original handwriting.”</p><button class="secondary-dark" id="readReport"><i class="icon icon-file-text"></i> Open sample report</button></div>
+        </section>
+
+        <section class="feature-row">
+          <div class="feature-card"><div class="feature-icon blue"><i class="icon icon-hand"></i></div><div><strong>Handwriting-aware</strong><p>Designed around real prescription images and confidence-aware recognition.</p></div></div>
+          <div class="feature-card"><div class="feature-icon red"><i class="icon icon-shield-alert"></i></div><div><strong>Safety-first</strong><p>Interaction and duplication findings are surfaced before dispensing.</p></div></div>
+          <div class="feature-card"><div class="feature-icon green"><i class="icon icon-accessibility"></i></div><div><strong>Patient-friendly</strong><p>Converts complex medication directions into a clearer schedule.</p></div></div>
+          <div class="feature-card"><div class="feature-icon violet"><i class="icon icon-brain"></i></div><div><strong>Explainable AI</strong><p>AI explains structured evidence instead of inventing medical facts.</p></div></div>
+        </section>
+
+        <footer class="footer"><span><i class="icon icon-shield-check"></i> Decision-support prototype · Not a substitute for clinical judgment</span><span>ScriptSense · Internal Hackathon 2026 · Prototype v0.3</span></footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"><i class="icon icon-check-circle-2"></i><span>Demo prescription loaded</span></div>
+
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close"><i class="icon icon-x"></i></button>
+      <div class="modal-icon"><i class="icon icon-file-text"></i></div>
+      <span class="section-kicker">SAMPLE OUTPUT</span>
+      <h2 id="modalTitle">Pharmacist review draft</h2>
+      <p class="modal-intro">A prototype of the explanation ScriptSense could generate from structured OCR and safety-check results.</p>
+      <div class="report-block"><div><span>Recognition</span><strong>4 medication candidates identified · 94.8% overall confidence</strong></div><div><span>Priority finding</span><strong>Warfarin + Amoxicillin flagged for interaction review</strong></div><div><span>Verification</span><strong>Omeprazole reading is below the preferred confidence threshold</strong></div><div><span>Next action</span><strong>Confirm original handwriting and review patient medication history</strong></div></div>
+      <div class="modal-disclaimer"><i class="icon icon-triangle-alert"></i> Prototype output only. A qualified clinician or pharmacist must verify the prescription and safety findings.</div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
