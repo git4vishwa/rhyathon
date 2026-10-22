@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZeroTrace — Privacy-first analytics</title>
+  <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="ZeroTrace dashboard home"><span class="brand-mark"><i></i></span><span>ZeroTrace</span></a>
+      <p class="eyebrow">WORKSPACE</p>
+      <div class="workspace" id="workspace"><span class="workspace-icon" id="siteInitial">Z</span><span class="workspace-meta"><select id="siteSelect" aria-label="Select registered website"></select><small id="siteOrigin">Loading sites…</small></span></div>
+      <div class="account-row"><span id="userEmail">Checking account…</span><button class="text-button" id="logoutBtn">Sign out</button></div>
+      <nav class="nav">
+        <a class="active" href="/"><span>▦</span> Overview</a>
+        <a href="#sections" data-scroll="sections"><span>◫</span> Content</a>
+        <a href="#forms" data-scroll="forms"><span>☷</span> Form funnel</a>
+        <a href="#privacy"><span>◇</span> Privacy center</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-mini"><span class="shield">✓</span><div><b>Aggregate-only storage</b><small>No visitor profiles</small></div></div>
+        <a class="demo-link" href="/demo" target="_blank" rel="noopener">Open demo website ↗</a>
+        <button class="text-button" id="themeToggle">◐ Toggle light / dark</button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><div class="breadcrumb">Analytics <span>/</span> Overview</div><h1>Good morning.</h1><p class="muted">Understand what happens on your website, not who did it.</p></div>
+        <div class="top-actions"><span class="status"><i></i> API connected</span><button class="button secondary" id="addSiteBtn">+ Add website</button><button class="button secondary" id="installSnippet">Get install snippet</button><a class="button primary" href="/demo" target="_blank" rel="noopener">Open demo site ↗</a></div>
+      </header>
+
+      <section class="intro-row">
+        <div><p class="eyebrow" id="siteEyebrow">REGISTERED WEBSITE</p><h2 id="overviewTitle">Website overview</h2><p class="muted" id="periodText">Aggregate measurements · Last 30 days</p></div>
+        <div class="range-switch" role="group" aria-label="Report range"><button data-days="7">7 days</button><button data-days="30" class="selected">30 days</button></div>
+      </section>
+
+      <section class="hero-grid">
+        <article class="hero-card">
+          <div class="hero-card-top"><span>Total page views</span><span class="pill">AGGREGATED</span></div>
+          <div class="hero-number" id="totalViews">—</div>
+          <p id="totalHint">Waiting for aggregate measurements</p>
+          <div id="trendChart" class="trend-chart" aria-label="Daily page view trend"></div>
+        </article>
+        <article class="metric-card"><div class="metric-icon teal">↗</div><p class="metric-label">Form starts</p><div class="metric-number" id="formStarts">—</div><p class="metric-foot">Aggregate funnel count</p></article>
+        <article class="metric-card"><div class="metric-icon amber">✓</div><p class="metric-label">Form submissions</p><div class="metric-number" id="formSubmits">—</div><p class="metric-foot" id="conversion">Aggregate completion rate</p></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel" id="devices">
+          <div class="panel-heading"><div><h3>Device distribution</h3><p class="muted">Page views by broad device category</p></div><span class="panel-mark">▥</span></div>
+          <div id="deviceSummary" class="device-summary"><p class="empty">Waiting for measurements…</p></div>
+          <p class="micro-note">Device category is coarse and approximate. It is not a device identity.</p>
+        </article>
+        <article class="panel" id="sections">
+          <div class="panel-heading"><div><h3>What people read</h3><p class="muted">Top-level page categories</p></div><span class="panel-mark">◫</span></div>
+          <div id="pageSummary" class="bar-list"><p class="empty">Waiting for measurements…</p></div>
+          <p class="micro-note">All aggregate counts are shown, including small counts. Small counts can still carry inference risk on sensitive sites.</p>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel" id="forms">
+          <div class="panel-heading"><div><h3>Registration funnel</h3><p class="muted">Progress counts, never form values</p></div><span class="panel-mark">☷</span></div>
+          <div id="funnel" class="funnel"><p class="empty">Use the demo site's registration form to generate data.</p></div>
+          <div class="callout"><span>↳</span><p><b>Privacy by default</b><br>ZeroTrace counts form milestones. It never reads names, email addresses, phone numbers, or field contents.</p></div>
+        </article>
+        <article class="panel privacy-panel" id="privacy">
+          <div class="panel-heading"><div><h3>Privacy center</h3><p class="muted">What the app retains</p></div><span class="privacy-score">✓</span></div>
+          <div class="privacy-list">
+            <div><span class="check">✓</span><span><b>Persistent visitor IDs</b><small>Not created by the SDK</small></span><strong>None</strong></div>
+            <div><span class="check">✓</span><span><b>Cookies / browser storage</b><small>Not used by the SDK</small></span><strong>None</strong></div>
+            <div><span class="check">✓</span><span><b>Raw event history</b><small>Each batch is merged then discarded</small></span><strong>Not stored</strong></div>
+            <div><span class="check">✓</span><span><b>Server data</b><small>Persistent daily aggregate counters only</small></span><strong>Aggregated</strong></div>
+            <div><span class="info">i</span><span><b>Abuse prevention</b><small>IP-derived limiter key exists in memory briefly; no IP history is stored</small></span><strong>Transient</strong></div>
+            <div><span class="info">i</span><span><b>Differential privacy</b><small>Not implemented in this MVP</small></span><strong class="not-yet">Future work</strong></div>
+          </div>
+          <p class="micro-note">This is a local prototype. Network infrastructure may still observe connection metadata; do not treat this as a formal anonymity guarantee.</p>
+          <button class="button secondary full" id="copyReport">Copy privacy report</button>
+        </article>
+      </section>
+
+      <section class="bottom-row"><div><span class="online-dot"></span><b id="lastUpdated">Connecting to ZeroTrace API…</b><span class="muted"> · persistent daily aggregates · Asia/Kolkata</span></div><div class="bottom-actions"><button class="text-button" id="refresh">↻ Refresh</button><button class="text-button danger" id="reset">Clear selected site data</button><button class="text-button danger" id="deleteSite">Remove website</button></div></section>
+      <footer>ZeroTrace <span>·</span> Analytics without the trail. <span class="footer-note">Prototype v1.0 · Deploy behind HTTPS before public use</span></footer>
+    </main>
+  </div>
+  <dialog id="installDialog" class="install-dialog">
+    <form method="dialog" class="dialog-close"><button class="text-button" aria-label="Close dialog">✕ Close</button></form>
+    <p class="eyebrow">WEBSITE INTEGRATION</p><h2>Install the ZeroTrace SDK</h2>
+    <p class="muted">Copy this snippet into your website. The origin must match the origin registered in ZeroTrace. Public use requires an HTTPS deployment.</p>
+    <pre><code id="installCode"></code></pre>
+    <div class="dialog-actions"><button class="button primary" id="copyInstall">Copy snippet</button><button class="button secondary" id="closeInstall">Done</button></div>
+    <p class="micro-note" id="snippetNote">The snippet sends predefined aggregate counters only. Do not put personal data in analytics labels.</p>
+  </dialog>
+
+  <dialog id="addSiteDialog" class="install-dialog">
+    <form method="dialog" class="dialog-close"><button class="text-button" aria-label="Close dialog">✕ Close</button></form>
+    <p class="eyebrow">SITE REGISTRATION</p><h2>Register a website</h2>
+    <p class="muted">Register the exact origin of the website that will embed the ZeroTrace SDK. Public sites must use HTTPS. Enter only the origin, not a page path.</p>
+    <form id="addSiteForm" class="site-form">
+      <label for="siteNameInput">Website name</label><input id="siteNameInput" name="name" minlength="2" maxlength="80" required placeholder="My college club">
+      <label for="siteOriginInput">Website origin</label><input id="siteOriginInput" name="origin" type="url" required placeholder="https://example.org">
+      <p class="micro-note">Origin examples: https://example.org or http://localhost:3000 for local development.</p>
+      <div class="dialog-actions"><button class="button primary" type="submit" id="saveSiteBtn">Register website</button></div>
+      <p class="form-error" id="siteFormError" role="alert"></p>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/dashboard.js" defer></script>
+</body>
+</html>

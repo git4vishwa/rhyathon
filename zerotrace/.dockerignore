@@ -1,0 +1,14 @@
+.git
+.gitignore
+.venv
+__pycache__
+.pytest_cache
+*.py[cod]
+.env
+.env.*
+data
+tests
+README.md
+requirements-dev.txt
+run_windows.bat
+run_unix.sh
